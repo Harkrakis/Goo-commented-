@@ -166,26 +166,29 @@ void sortQueries(BallQuery *queries, int queryCount)
 	BallQuery tmp;
 	e=0;
 	
+	//tri à bulles
 	while(e<queryCount-1)
 	{
 		for(int i=1;i<queryCount;i++)
 		{
-			if(queries[i-1].distance>queries[i].distance)
+			if(queries[i-1].distance>queries[i].distance)//vérification selon la distance
 			{
-				tmp=queries[i];
-				queries[i]=queries[i-1];
-				queries[i-1]=tmp;
+				tmp = queries[i];
+				queries[i] = queries[i-1];
+				queries[i-1] = tmp;
+				//échange des variables 
 				e=0;
 			}
 			else
 				e++;
+				//Lorsque e est égal à queryCount la liste est triée
 		}
-	}	
+	}
 }
 
 int Scene_GetNearestBalls(Scene *scene, Vec2 position, BallQuery *queries, int queryCount)
 {
-	int ballCount = Scene_GetBallCount(scene);
+    int ballCount = Scene_GetBallCount(scene);
     Ball *balls = Scene_GetBalls(scene);	
     
 	for(int i=0;i<queryCount;i++)
