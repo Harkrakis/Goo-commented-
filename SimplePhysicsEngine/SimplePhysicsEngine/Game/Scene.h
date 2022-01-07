@@ -145,4 +145,9 @@ BallQuery Scene_GetNearestBall(Scene *scene, Vec2 position);
 /// @return EXIT_SUCCESS ou EXIT_FAILURE. Le resultat de la recherche est écrit dans le tableau queries.
 int Scene_GetNearestBalls(Scene *scene, Vec2 position, BallQuery *queries, int queryCount);
 
+///Tri d'un tableau de BallQuery selon la distance
+///*queries :pointeur vers le tableau de BallQuery
+///queryCount :nombre de query dans le tableau
+void sortQueries(BallQuery *queries, int queryCount);
+
 #endif
