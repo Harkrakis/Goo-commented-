@@ -142,9 +142,10 @@ void Ball_UpdateVelocity(Ball *ball, float timeStep)
     int j;
     for(j=0;j<ball->springCount;j++)
     { 
-		Spring *spring=&(ball->springs[j]);
-		I=Vec2_Normalize( Vec2_Sub ( ball->springs[j].other->position, ball->position ));
-    	F=Vec2_Add(F,Vec2_Scale(I, K*( (Vec2_Distance(spring->other->position,ball->position)) - (spring->length))));
+	Spring *spring=&(ball->springs[j]);
+	I = Vec2_Normalize(   Vec2_Sub ( ball->springs[j].other->position   ,    ball->position )); // Vecteur unitaire de direction du ressort et vers la balle dont on modifie la vélocité
+	    
+    	F = Vec2_Add  ( F, Vec2_Scale ( I , K*( (Vec2_Distance(spring->other->position,ball->position)) - (spring->length))));
     }
 
 
