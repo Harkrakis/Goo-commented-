@@ -37,7 +37,7 @@ void modemod(int mode)
 				case 4:				//Balles lourdes
 				{
 						modeset = modeset1;
-						modeset.masse = 20.0f;
+						modeset.grav.y = -30.0;
 						modeset.K = 800.0f;
 						
 
