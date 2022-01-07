@@ -138,18 +138,23 @@ Vec2 Ball_GetPosition(Ball *ball)
 void Ball_UpdateVelocity(Ball *ball, float timeStep)
 {
     Vec2 acc,I,F={0,0},g = modeset.grav;
-    float K = modeset.K;
+    float l ,K = modeset.K;
     int j;
     for(j=0;j<ball->springCount;j++)
     { 
+	
 	Spring *spring=&(ball->springs[j]);
-	I = Vec2_Normalize(   Vec2_Sub ( ball->springs[j].other->position   ,    ball->position )); // Vecteur unitaire de direction du ressort et vers la balle dont on modifie la vélocité
+	l=Vec2_Distance(spring->other->position,ball->position);
+	I = Vec2_Normalize(  Vec2_Sub ( spring->other->position   ,    ball->position )); // Vecteur unitaire de direction du ressort et vers la balle dont on modifie la vélocité    
 	    
-    	F = Vec2_Add  ( F, Vec2_Scale ( I , K*( (Vec2_Distance(spring->other->position,ball->position)) - (spring->length))));
+	F = Vec2_Add  ( F, Vec2_Scale ( I , K*(l - (spring->length))));
     }
-
-
-    acc=Vec2_Scale( Vec2_Add( Vec2_Add( Vec2_Scale(g, ball->mass), Vec2_Scale(ball->velocity, -1*ball->friction) ),F), 1./ball->mass);
+    
+    Vec2 fric=Vec2_Scale(ball->velocity, -1*ball->friction);
+    Vec2 P=Vec2_Scale(g, ball->mass);
+    
+    
+    acc=Vec2_Scale( Vec2_Add( Vec2_Add(P, fric),F), 1./ball->mass);
     ball->velocity=Vec2_Add(ball->velocity,Vec2_Scale(acc, timeStep)); 
 }
 
