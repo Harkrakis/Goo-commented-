@@ -137,7 +137,7 @@ Ball *Scene_GetBalls(Scene *scene)
 {
     return scene->m_balls;
 }
-BallQuery Scene_GetNearestBall(Scene *scene, Vec2 position)
+BallQuery Scene_GetNearestBall(Scene *scene, Vec2 position)  //Trouve la balle la plus proche et sa distance à la position en entrée 
 {
     int ballCount = Scene_GetBallCount(scene);
     Ball *balls = Scene_GetBalls(scene);
@@ -147,17 +147,17 @@ BallQuery Scene_GetNearestBall(Scene *scene, Vec2 position)
 			query.ball=NULL;
 		else
 		{
-			query.distance = Vec2_Distance(position,balls[0].position);
+			query.distance = Vec2_Distance(position,balls[0].position); //Initialisation avec la première balle du tableau 
 			query.ball = &balls[0];
-    for(int i=1;i<ballCount;i++)
-    {
-    	if(Vec2_Distance(position,balls[i].position)<query.distance)
-    	{	
-    		query.distance = Vec2_Distance(position,balls[i].position);
-    		query.ball = &balls[i];
-    	}
-	  }
-	  }
+    			for(int i=1;i<ballCount;i++)						
+    			{
+    				if(Vec2_Distance(position,balls[i].position)<query.distance)//Parcourt le tableau et cherche la balles avec la plus petite distance à position
+    				{	
+    					query.distance = Vec2_Distance(position,balls[i].position);
+    					query.ball = &balls[i];
+    				}
+	  		}
+	 	 }
     return query;
 }
 
