@@ -39,7 +39,7 @@ void modemod(int mode)  // fonction pour choisir un mode; modifie certains param
 				{
 						modeset = modeset1;
 						modeset.grav.y = -30.0;
-						modeset.K = 800.0f;
+						modeset.K = 150.0f;
 						
 
 					break;		
