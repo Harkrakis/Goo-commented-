@@ -2,18 +2,18 @@
 #include "Scene.h"
 
 
-Mode_Jeu modeset = {.K = 200.0f,.grav = { 0.0f, -9.81f},.masse = 0.4f,.l_0=1.5f};  // initialisation mode jeu classique
-const Mode_Jeu modeset1 = {.K = 200.0f,.grav = { 0.0f, -9.81f},.masse = 0.4f,.l_0=1.5f}; // variable de réference pour réinitialiser les sparamètres avant d'en modifier de nouveaux
-void modemod(int mode)  // fonction pour choisir un mode; modifie certains paramètres de la physique des balles
+Mode_Jeu modeset = {.K = 200.0f,.grav = { 0.0f, -9.81f},.masse = 0.4f,.l_0=1.5f}; 	  // initialisation mode jeu classique
+const Mode_Jeu modeset1 = {.K = 200.0f,.grav = { 0.0f, -9.81f},.masse = 0.4f,.l_0=1.5f};  // variable de réference pour réinitialiser les sparamètres avant d'en modifier de nouveaux
+void modemod(int mode)  								  // fonction pour choisir un mode; modifie certains paramètres de la physique des balles
 {
 
 
 
-	switch ( mode )
+	switch ( mode )   // modes de jeux
 	{
-		  // modes de jeux
+		
 		   
-	case 1:		//Reset mode classique
+	case 1:				//Reset mode classique
 				{
 						modeset = modeset1;
 
@@ -144,34 +144,34 @@ void Ball_UpdateVelocity(Ball *ball, float timeStep)
     { 
 	
 	Spring *spring=&(ball->springs[j]);
-	l=Vec2_Distance(spring->other->position,ball->position);
+	l = Vec2_Distance(spring->other->position,ball->position);
 	I = Vec2_Normalize(  Vec2_Sub ( spring->other->position   ,    ball->position )); // Vecteur unitaire de direction du ressort et vers la balle dont on modifie la vélocité    
 	    
-	F = Vec2_Add  ( F, Vec2_Scale ( I , K*(l - (spring->length))));
+	F = Vec2_Add  ( F, Vec2_Scale ( I , K*(l - (spring->length)))); 		  //Force exercée par le ressort
     }
     
-    Vec2 fric=Vec2_Scale(ball->velocity, -1*ball->friction);
-    Vec2 P=Vec2_Scale(g, ball->mass);
+    Vec2 fric = Vec2_Scale(ball->velocity, -1*ball->friction);  				  //Force de friction 	
+    Vec2 P = Vec2_Scale(g, ball->mass);								  //Force du poids	
     
     
-    acc=Vec2_Scale( Vec2_Add( Vec2_Add(P, fric),F), 1./ball->mass);
-    ball->velocity=Vec2_Add(ball->velocity,Vec2_Scale(acc, timeStep)); 
+    acc = Vec2_Scale( Vec2_Add( Vec2_Add(P, fric),F), 1./ball->mass);                            // PFD
+    ball->velocity = Vec2_Add(ball->velocity,Vec2_Scale(acc, timeStep)); 			 //Approximation d'Euler V = V + a*dt	
 }
 
 void Ball_UpdatePosition(Ball *ball, float timeStep)
 {
-    if(ball->position.y<0)
+    if(ball->position.y<0)				// Sors la balle du sol si elle y est
     {
-	   ball->position.y=0;
+	   ball->position.y=0;				
     }
-    if(ball->position.y+timeStep*ball->velocity.y>=0)
+    if(ball->position.y+timeStep*ball->velocity.y>0)   
     {
-    	ball->position=Vec2_Add(ball->position,Vec2_Scale(ball->velocity, timeStep));
+    	ball->position=Vec2_Add(ball->position,Vec2_Scale(ball->velocity, timeStep));  //Approximation d'Euler OM = OM + V*dt
     }
-    else 
+    else 							
     {
-    	ball->position.x+=timeStep*ball->velocity.x;
-    	ball->velocity.y=-0.8*ball->velocity.y;
+    	ball->position.x += timeStep*ball->velocity.x;		// Rebondit si y = 0		
+    	ball->velocity.y = -0.8*ball->velocity.y;
     }
 }
 
