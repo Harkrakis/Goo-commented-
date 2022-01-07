@@ -8,10 +8,10 @@
 
 typedef struct Textures_s
 {
-		SDL_Texture *m_arrow;
-		SDL_Texture *m_arrow1;
-		SDL_Texture *m_moon;
-		SDL_Texture *m_nograv;
+    SDL_Texture *m_arrow;
+    SDL_Texture *m_arrow1;
+    SDL_Texture *m_moon;
+    SDL_Texture *m_nograv;
     SDL_Texture *m_body;
     SDL_Texture *m_spring;
     SDL_Texture *m_springInactive;
