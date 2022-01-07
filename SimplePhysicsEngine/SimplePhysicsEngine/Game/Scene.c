@@ -142,6 +142,7 @@ BallQuery Scene_GetNearestBall(Scene *scene, Vec2 position)
     int ballCount = Scene_GetBallCount(scene);
     Ball *balls = Scene_GetBalls(scene);
     BallQuery query = { 0 };
+	
 		if(ballCount==0)
 			query.ball=NULL;
 		else
