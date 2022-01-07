@@ -14,11 +14,11 @@ void Background_Render(Scene *scene)
     // Couleur de remplissage (identique au ciel)
     Renderer_Fill(renderer, Color_Set(145, 134, 161, 255));
 
-    // Dimension du fond dans le référentiel monde
+    // Dimension du fond dans le rÃ©fÃ©rentiel monde
     float worldW = 1.3f * 16.0f;
     float worldH = 1.3f * 9.0f;
 
-    // Dessine les différents calques du fond (parallax)
+    // Dessine les diffÃ©rents calques du fond (parallax)
     for (int i = 0; i < LAYER_COUNT; ++i)
     {
         Vec2 origin = Vec2_Set(
@@ -60,7 +60,7 @@ void TileMap_Render(Scene *scene)
     Textures *textures = scene->m_textures;
     Rect view = Camera_GetView(camera);
 
-    // Dimension du sol dans le référentiel monde
+    // Dimension du sol dans le rÃ©fÃ©rentiel monde
     float worldW = 10.0f;
     float worldH = 1.0f;
 
@@ -93,7 +93,7 @@ void TileMap_Render(Scene *scene)
     }
 }
 
-void ModeButton_Render(Scene *scene)
+void ModeButton_Render(Scene *scene)    /// affichage des bouttons pour changer de mode de jeu
 {
 
     Renderer *renderer = Scene_GetRenderer(scene);
