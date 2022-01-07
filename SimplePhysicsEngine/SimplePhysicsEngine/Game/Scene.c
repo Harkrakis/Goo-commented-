@@ -308,9 +308,10 @@ void Scene_UpdateGame(Scene *scene)
 		
 		
 			BallQuery Nearest_Ball=Scene_GetNearestBall(scene,Scene_GetMousePosition(scene));    		 
-			
+			//Clic sur la balle
 			if((Nearest_Ball.distance<0.2f)&&(ballCount!=0))
 				{
+					//Supprime la balle
 					Scene_RemoveBall(scene,Nearest_Ball.ball);
 				}
 			else
@@ -321,6 +322,7 @@ void Scene_UpdateGame(Scene *scene)
 				{
 					for(int i=0;i<3;i++)
 					{
+						//création des ressorts avec les 3 balles les plus proches
 						if((scene->m_queries[i].ball!=NULL)&&(scene->m_queries[i].distance<2.0f))
 						Ball_Connect(scene->m_queries[i].ball, ball4, 1.5f);
 					}
@@ -331,13 +333,14 @@ void Scene_UpdateGame(Scene *scene)
 			}
 		}
 	
-		if(input-> KeyDDown==true)
+		if(input-> KeyDDown==true)//si la touche d est maintenue
 	{
 		BallQuery Nearest_Ball=Scene_GetNearestBall(scene,Scene_GetMousePosition(scene));
-		if(Nearest_Ball.distance<0.5)
+		if(Nearest_Ball.distance<0.5)//si la souris est sur la balle
 		{
 			Nearest_Ball.ball->velocity= Vec2_Set(0.0f,0.0f);
 			Nearest_Ball.ball->position=Scene_GetMousePosition(scene);
+			//On déplace la balle en fonction de la position de la souris
 		}
 	}
 	
