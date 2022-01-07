@@ -15,3 +15,5 @@ Interface pour choisir différent modes : 5 modes différents à changer en cliq
 - Mode Gravité lunaire pour l'image de Lune
 - Mode Sans gravité pour l'image d'interdiction(avec écrit pas de gravité mais ça se voit pas)
 - Mode Classique pour l'image de balle
+
+
