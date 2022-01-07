@@ -167,8 +167,7 @@ void sortQueries(BallQuery *queries, int queryCount)
 	BallQuery tmp;
 	e=0;
 	
-	//tri à bulles par ordre croissant
-	while(e<queryCount-1)
+	while(e<queryCount-1)//tri à bulles par ordre croissant
 	{
 		for(int i=1;i<queryCount;i++)
 		{
@@ -181,8 +180,7 @@ void sortQueries(BallQuery *queries, int queryCount)
 				e=0;
 			}
 			else
-				e++;
-				//Lorsque e est égal à queryCount la liste est triée
+				e++;//Lorsque e est égal à queryCount la liste est triée	
 		}
 	}
 }
@@ -192,16 +190,14 @@ int Scene_GetNearestBalls(Scene *scene, Vec2 position, BallQuery *queries, int q
 {
     int ballCount = Scene_GetBallCount(scene);
     Ball *balls = Scene_GetBalls(scene);	
-    	
-	//initialisation de queries
-	for(int i=0;i<queryCount;i++)
+   		
+	for(int i=0;i<queryCount;i++)//initialisation de queries
 	{
 		queries[i].ball=&balls[i];
 		queries[i].distance=Vec2_Distance(position,balls[i].position);
 	}
 	
-	//tri du queries
-	sortQueries(queries,queryCount);	
+	sortQueries(queries,queryCount);//tri du queries	
 	
 	
 	for(int i=queryCount;i<ballCount;i++)
@@ -309,11 +305,11 @@ void Scene_UpdateGame(Scene *scene)
 		
 		
 			BallQuery Nearest_Ball=Scene_GetNearestBall(scene,Scene_GetMousePosition(scene));    		 
-			//Clic sur la balle
-			if((Nearest_Ball.distance<0.2f)&&(ballCount!=0))
+			
+			if((Nearest_Ball.distance<0.2f)&&(ballCount!=0))//Clic sur la balle
 				{
-					//Supprime la balle
-					Scene_RemoveBall(scene,Nearest_Ball.ball);
+					
+					Scene_RemoveBall(scene,Nearest_Ball.ball);//Supprime la balle
 				}
 			else
 			{
@@ -323,8 +319,8 @@ void Scene_UpdateGame(Scene *scene)
 				{
 					for(int i=0;i<3;i++)
 					{
-						//création des ressorts avec les 3 balles les plus proches
-						if((scene->m_queries[i].ball!=NULL)&&(scene->m_queries[i].distance<2.0f))
+						
+						if((scene->m_queries[i].ball!=NULL)&&(scene->m_queries[i].distance<2.0f))//création des ressorts avec les 3 balles les plus proches
 						Ball_Connect(scene->m_queries[i].ball, ball4, 1.5f);
 					}
 				
@@ -340,8 +336,8 @@ void Scene_UpdateGame(Scene *scene)
 		if(Nearest_Ball.distance<0.5)//si la souris est sur la balle
 		{
 			Nearest_Ball.ball->velocity= Vec2_Set(0.0f,0.0f);
-			Nearest_Ball.ball->position=Scene_GetMousePosition(scene);
-			//On déplace la balle en fonction de la position de la souris
+			Nearest_Ball.ball->position=Scene_GetMousePosition(scene);//On déplace la balle en fonction de la position de la souris
+			
 		}
 	}
 	
