@@ -1,4 +1,4 @@
-﻿#include "Vector.h"
+#include "Vector.h"
 #include <math.h>
 Vec2 Vec2_Set(float x, float y)
 {
@@ -10,8 +10,6 @@ Vec2 Vec2_Perp(Vec2 v)
 {
     return Vec2_Set(v.y, -v.x);
 }
-
-// TODO - Complétez le fichier
 
 Vec2 Vec2_Add(Vec2 v1, Vec2 v2)
 {
@@ -36,7 +34,6 @@ Vec2 Vec2_Scale(Vec2 v, float s)
 
 float Vec2_Length(Vec2 v)
 {
-    
     return sqrt(v.x*v.x+v.y*v.y);
 }
 
