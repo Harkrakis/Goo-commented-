@@ -1,9 +1,10 @@
 ﻿#include "Ball.h"
 #include "Scene.h"
 
-Mode_Jeu modeset1 = {.K = 200.0f,.grav = { 0.0f, -9.81f},.masse = 0.4f,.l_0=1.5f};
-Mode_Jeu modeset = {.K = 200.0f,.grav = { 0.0f, -9.81f},.masse = 0.4f,.l_0=1.5f};
-void modemod(int mode)
+
+Mode_Jeu modeset = {.K = 200.0f,.grav = { 0.0f, -9.81f},.masse = 0.4f,.l_0=1.5f};  // initialisation mode jeu classique
+const Mode_Jeu modeset1 = {.K = 200.0f,.grav = { 0.0f, -9.81f},.masse = 0.4f,.l_0=1.5f}; // variable de réference pour réinitialiser les sparamètres avant d'en modifier de nouveaux
+void modemod(int mode)  // fonction pour choisir un mode; modifie certains paramètres de la physique des balles
 {
 
 
