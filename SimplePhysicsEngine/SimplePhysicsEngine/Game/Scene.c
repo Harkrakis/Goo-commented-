@@ -271,27 +271,26 @@ void Scene_UpdateGame(Scene *scene)
 		
 		if(((xs>=X_1)&&(xs<=X_1+W))&&((ys>=Y)&&(ys<=ys+H))) // Si dans le carré de l'image de ces coordonnées
 		{
-				//change au mode Balles lourdes
+											//change au mode Balles lourdes
 				modemod(4);
 		}
 		else if(((xs>=X_2)&&(xs<=X_2+W))&&((ys>=Y)&&(ys<=ys+H)))
-		{
-																				//change au mode grav neg
+		{									//change au mode grav neg
 				modemod(5);
 		}
 		else if(((xs>=X_3)&&(xs<=X_3+W))&&((ys>=Y)&&(ys<=ys+H)))
 		{
-																	//change au mode lune
+											//change au mode lune
 				modemod(2);
 		}
 		else if(((xs>=X_4)&&(xs<=X_4+W))&&((ys>=Y)&&(ys<=ys+H)))
 		{
-															//change au mode nograv
+											//change au mode nograv
 				modemod(3);
 		}
 		else if(((xs>=X_5)&&(xs<=X_5+W))&&((ys>=Y)&&(ys<=ys+H)))
 		{
-															//change au mode nograv
+											//change au mode nograv
 				modemod(1);
 		}
 		
