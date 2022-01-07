@@ -266,10 +266,10 @@ void Scene_UpdateGame(Scene *scene)
 	{
 
 		Input *input = Scene_GetInput(scene);
-		float xs = (float)input->mouseX;
-		float ys = (float)input->mouseY;
+		float xs = (float)input->mouseX;  //Position de la souris en pixel sur axe x
+		float ys = (float)input->mouseY;  //Position de la souris en pixel sur axe y
 		
-		if(((xs>=X_1)&&(xs<=X_1+W))&&((ys>=Y)&&(ys<=ys+H)))
+		if(((xs>=X_1)&&(xs<=X_1+W))&&((ys>=Y)&&(ys<=ys+H))) // Si dans le carré de l'image de ces coordonnées
 		{
 				//change au mode Balles lourdes
 				modemod(4);
@@ -295,7 +295,7 @@ void Scene_UpdateGame(Scene *scene)
 				modemod(1);
 		}
 		
-		else
+		else   // si souris dans aucune des images
 		{
 		
 		
@@ -323,6 +323,7 @@ void Scene_UpdateGame(Scene *scene)
 			 	}
 			}
 		}
+	
 		if(input-> KeyDDown==true)
 	{
 		BallQuery Nearest_Ball=Scene_GetNearestBall(scene,Scene_GetMousePosition(scene));
