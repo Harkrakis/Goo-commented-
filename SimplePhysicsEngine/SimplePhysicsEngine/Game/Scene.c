@@ -166,7 +166,7 @@ void sortQueries(BallQuery *queries, int queryCount)
 	BallQuery tmp;
 	e=0;
 	
-	//tri à bulles
+	//tri à bulles par ordre croissant
 	while(e<queryCount-1)
 	{
 		for(int i=1;i<queryCount;i++)
@@ -186,26 +186,31 @@ void sortQueries(BallQuery *queries, int queryCount)
 	}
 }
 
+
 int Scene_GetNearestBalls(Scene *scene, Vec2 position, BallQuery *queries, int queryCount)
 {
     int ballCount = Scene_GetBallCount(scene);
     Ball *balls = Scene_GetBalls(scene);	
-    
+    	
+	//initialisation de queries
 	for(int i=0;i<queryCount;i++)
 	{
 		queries[i].ball=&balls[i];
 		queries[i].distance=Vec2_Distance(position,balls[i].position);
 	}
 	
+	//tri du queries
 	sortQueries(queries,queryCount);	
+	
 	
 	for(int i=queryCount;i<ballCount;i++)
 	{
-		if(Vec2_Distance(position,balls[i].position)<queries[queryCount-1].distance)
+		if(Vec2_Distance(position,balls[i].position)<queries[queryCount-1].distance)//si une balle est à une distance plus petite que la plus grande valeur
 			{
 				queries[queryCount-1].ball=&balls[i];
 				queries[queryCount-1].distance=Vec2_Distance(position,balls[i].position);
 				sortQueries(queries,queryCount);
+				//échange des valeurs puis tri
 			}
 	}
 	
